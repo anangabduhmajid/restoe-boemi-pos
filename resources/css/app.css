@@ -1,0 +1,720 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#welcome {
+    --boemi-maroon: #4A0D0D;
+    --boemi-maroon2: #6B0F0F;
+    --boemi-orange: #E85D3F;
+    --boemi-cream: #FFFDF8;
+    --boemi-cream2: #F9F1E8;
+    --boemi-ink: #2a0707;
+    box-sizing: border-box;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    overflow: hidden;
+    padding: calc(16px + env(safe-area-inset-top, 0px)) 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    background: radial-gradient(120% 80% at 50% 100%, var(--boemi-maroon2), var(--boemi-maroon) 60%);
+    color: var(--boemi-ink);
+    font-family: Inter, system-ui, sans-serif;
+    transition: transform .8s cubic-bezier(.7, 0, .2, 1);
+}
+
+#welcome,
+#welcome *,
+#welcome *::before,
+#welcome *::after {
+    box-sizing: border-box;
+}
+
+#welcome.out {
+    transform: translateY(-105%);
+}
+
+#welcome h1,
+#welcome h2,
+#welcome .boemi-welcome-btn {
+    font-family: Nunito, system-ui, sans-serif;
+}
+
+#welcome .boemi-welcome-logo {
+    position: absolute;
+    top: calc(18px + env(safe-area-inset-top, 0px));
+    right: 0;
+    left: 0;
+    color: var(--boemi-orange);
+    font: 900 20px Nunito, sans-serif;
+    letter-spacing: .2px;
+    text-align: center;
+    opacity: 0;
+    animation: boemi-welcome-fade .6s .2s forwards;
+}
+
+#welcome .boemi-welcome-logo small {
+    display: block;
+    margin-top: 2px;
+    color: var(--boemi-cream);
+    font: 600 10px Inter, sans-serif;
+    letter-spacing: 2px;
+}
+
+#welcome .boemi-welcome-bubble {
+    position: relative;
+    z-index: 3;
+    width: min(88vw, 340px);
+    min-height: 56px;
+    border: 3px solid var(--boemi-ink);
+    border-radius: 20px;
+    background: var(--boemi-cream);
+    padding: 12px 18px;
+    color: var(--boemi-maroon);
+    font: 800 17px/1.3 Nunito, sans-serif;
+    text-align: center;
+    box-shadow: 4px 4px 0 var(--boemi-orange);
+    transform: scale(0);
+    transform-origin: 50% 100%;
+    animation: boemi-welcome-pop .5s 1.1s cubic-bezier(.34, 1.56, .64, 1) forwards;
+}
+
+#welcome .boemi-welcome-bubble::after {
+    position: absolute;
+    bottom: -13px;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border-right: 3px solid var(--boemi-ink);
+    border-bottom: 3px solid var(--boemi-ink);
+    background: var(--boemi-cream);
+    content: "";
+    transform: translateX(-50%) rotate(45deg);
+}
+
+#welcome .boemi-welcome-caret {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    margin-left: 2px;
+    background: var(--boemi-orange);
+    vertical-align: -2px;
+    animation: boemi-welcome-blink 1s steps(1) infinite;
+}
+
+#welcome .boemi-welcome-stage {
+    position: relative;
+    width: min(135vw, 640px);
+    aspect-ratio: 700 / 380;
+    margin-top: 14px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#welcome .boemi-welcome-stage:focus-visible {
+    outline: 3px solid var(--boemi-orange);
+    outline-offset: 4px;
+}
+
+#welcome .boemi-welcome-rig {
+    position: absolute;
+    inset: 0;
+    transform-origin: 50% 92%;
+    animation: boemi-welcome-float 2.6s ease-in-out infinite;
+}
+
+#welcome .boemi-welcome-rig img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
+    opacity: 0;
+    transform: scale(.85);
+    transform-origin: 50% 95%;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+#welcome .boemi-welcome-rig img.on {
+    opacity: 1;
+    animation: boemi-welcome-squash .6s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+
+#welcome .boemi-welcome-rig img.off {
+    opacity: 0;
+    transition: opacity .18s;
+}
+
+#welcome .boemi-welcome-stage.hop .boemi-welcome-rig {
+    animation: none;
+}
+
+#welcome .boemi-welcome-stage.hop {
+    animation: boemi-welcome-hop .5s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+#welcome .boemi-welcome-shadow {
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    width: 34%;
+    height: 6%;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .35);
+    filter: blur(4px);
+    transform: translateX(-50%);
+    animation: boemi-welcome-shadow 2.6s ease-in-out infinite;
+}
+
+#welcome .boemi-welcome-float {
+    position: absolute;
+    font-size: 26px;
+    opacity: 0;
+    pointer-events: none;
+    animation: boemi-welcome-rise 6s linear infinite;
+}
+
+#welcome .boemi-welcome-float:nth-of-type(1) {
+    left: 8%;
+    animation-delay: 0s;
+}
+
+#welcome .boemi-welcome-float:nth-of-type(2) {
+    left: 24%;
+    font-size: 20px;
+    animation-delay: 1.8s;
+}
+
+#welcome .boemi-welcome-float:nth-of-type(3) {
+    left: 70%;
+    animation-delay: .9s;
+}
+
+#welcome .boemi-welcome-float:nth-of-type(4) {
+    left: 88%;
+    font-size: 22px;
+    animation-delay: 3s;
+}
+
+#welcome .boemi-welcome-float:nth-of-type(5) {
+    left: 48%;
+    font-size: 18px;
+    animation-delay: 4.2s;
+}
+
+#welcome .boemi-welcome-btn {
+    position: relative;
+    z-index: 3;
+    border: 3px solid var(--boemi-ink);
+    border-radius: 999px;
+    background: var(--boemi-cream);
+    padding: 14px 34px;
+    color: var(--boemi-maroon);
+    font-size: 17px;
+    font-weight: 900;
+    opacity: 0;
+    transform: translateY(20px);
+    box-shadow: 4px 4px 0 var(--boemi-orange);
+    transition: transform .15s, box-shadow .15s;
+    cursor: pointer;
+}
+
+#welcome .boemi-welcome-btn.show {
+    animation: boemi-welcome-up .6s cubic-bezier(.34, 1.56, .64, 1) forwards;
+}
+
+#welcome .boemi-welcome-btn:active {
+    transform: translate(3px, 3px) !important;
+    box-shadow: 1px 1px 0 var(--boemi-orange);
+}
+
+#welcome .boemi-welcome-btn:focus-visible,
+#welcome .boemi-welcome-stage:focus-visible {
+    outline: 3px solid var(--boemi-orange);
+    outline-offset: 4px;
+}
+
+#welcome .boemi-welcome-dots {
+    z-index: 3;
+    display: flex;
+    gap: 7px;
+    margin-top: 2px;
+}
+
+#welcome .boemi-welcome-dots i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 253, 248, .3);
+    transition: .3s;
+}
+
+#welcome .boemi-welcome-dots i.a {
+    background: var(--boemi-orange);
+    transform: scale(1.4);
+}
+
+#welcome .boemi-welcome-skip {
+    position: absolute;
+    z-index: 4;
+    top: calc(16px + env(safe-area-inset-top, 0px));
+    right: 14px;
+    border: 0;
+    background: none;
+    padding: 8px;
+    color: var(--boemi-cream);
+    font: 600 13px Inter, sans-serif;
+    opacity: .7;
+    cursor: pointer;
+}
+
+#welcome .boemi-welcome-skip:focus-visible {
+    outline: 2px solid var(--boemi-cream);
+    outline-offset: 2px;
+}
+
+@keyframes boemi-welcome-fade {
+    to { opacity: 1; }
+}
+
+@keyframes boemi-welcome-pop {
+    to { transform: scale(1); }
+}
+
+@keyframes boemi-welcome-blink {
+    50% { opacity: 0; }
+}
+
+@keyframes boemi-welcome-up {
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes boemi-welcome-float {
+    0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+    50% { transform: translateY(-9px) rotate(1.5deg); }
+}
+
+@keyframes boemi-welcome-shadow {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: .9; }
+    50% { transform: translateX(-50%) scale(.8); opacity: .5; }
+}
+
+@keyframes boemi-welcome-squash {
+    0% { transform: scale(.8, .7) translateY(14px); opacity: 0; }
+    45% { transform: scale(.95, 1.1) translateY(-10px); opacity: 1; }
+    70% { transform: scale(1.04, .96); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes boemi-welcome-hop {
+    0%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-30px) scale(.97, 1.04); }
+    70% { transform: translateY(0) scale(1.04, .96); }
+}
+
+@keyframes boemi-welcome-rise {
+    0% { transform: translateY(110vh) rotate(0); opacity: 0; }
+    10% { opacity: .8; }
+    90% { opacity: .8; }
+    100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+}
+
+@media (max-height: 560px) {
+    #welcome {
+        justify-content: flex-start;
+        overflow-y: auto;
+    }
+
+    #welcome .boemi-welcome-stage {
+        width: min(100vw, 520px);
+        margin-top: 6px;
+    }
+
+    #welcome .boemi-welcome-bubble {
+        min-height: 48px;
+        padding: 8px 14px;
+        font-size: 15px;
+    }
+
+    #welcome .boemi-welcome-btn {
+        padding: 10px 26px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #welcome,
+    #welcome *,
+    #welcome *::before,
+    #welcome *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    #welcome .boemi-welcome-float {
+        display: none;
+    }
+
+    #welcome .boemi-welcome-bubble {
+        transform: scale(1);
+    }
+
+    #welcome .boemi-welcome-btn {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.rb-notification-system {
+    --rb-toast-success: #2E7D32;
+    --rb-toast-error: #C62828;
+    --rb-toast-warning: #E85D3F;
+    --rb-toast-info: #4A0D0D;
+}
+
+.rb-toast-stack {
+    position: fixed;
+    z-index: 1100;
+    top: max(16px, env(safe-area-inset-top, 0px));
+    right: max(16px, env(safe-area-inset-right, 0px));
+    display: flex;
+    width: min(390px, calc(100vw - 32px));
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.rb-notification-system[data-toast-theme="admin"] .rb-toast-stack {
+    top: max(96px, env(safe-area-inset-top, 0px));
+}
+
+.rb-toast {
+    --rb-toast-color: var(--rb-toast-info);
+    position: relative;
+    display: flex;
+    min-width: 0;
+    align-items: flex-start;
+    gap: 11px;
+    overflow: hidden;
+    border: 1px solid #e8ded2;
+    border-left: 4px solid var(--rb-toast-color);
+    border-radius: 10px;
+    background: #fffdf8;
+    padding: 14px 42px 15px 14px;
+    color: #211d1a;
+    box-shadow: 0 8px 24px rgba(32, 12, 12, .16);
+    font: 500 14px/1.35 Inter, system-ui, sans-serif;
+    opacity: 0;
+    transform: translateX(18px);
+    transition: transform .25s ease, opacity .25s ease;
+    pointer-events: auto;
+}
+
+.rb-toast.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.rb-toast.is-leaving {
+    opacity: 0;
+}
+
+.rb-toast--success { --rb-toast-color: var(--rb-toast-success); }
+.rb-toast--error { --rb-toast-color: var(--rb-toast-error); }
+.rb-toast--warning { --rb-toast-color: var(--rb-toast-warning); }
+.rb-toast--info { --rb-toast-color: var(--rb-toast-info); }
+
+.rb-toast__icon {
+    display: grid;
+    width: 23px;
+    height: 23px;
+    flex: 0 0 23px;
+    place-items: center;
+    color: var(--rb-toast-color);
+}
+
+.rb-toast__icon svg {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+.rb-toast__content {
+    display: grid;
+    min-width: 0;
+    gap: 3px;
+}
+
+.rb-toast__title {
+    color: var(--rb-toast-color);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.rb-toast__message {
+    display: block;
+    overflow: hidden;
+    color: #4b403a;
+    font-size: 13px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rb-toast__close {
+    position: absolute;
+    top: 8px;
+    right: 9px;
+    display: grid;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #71635b;
+    font: 400 22px/1 Arial, sans-serif;
+    cursor: pointer;
+}
+
+.rb-toast__close:hover,
+.rb-toast__close:focus-visible {
+    background: #f3ece5;
+    outline: 2px solid var(--rb-toast-color);
+    outline-offset: 1px;
+}
+
+.rb-toast__progress {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: var(--rb-toast-color);
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+.rb-notification-system[data-toast-theme="customer"] .rb-toast {
+    border: 2px solid #4A0D0D;
+    border-radius: 18px;
+    background: #FFFDF8;
+    padding: 13px 42px 15px 13px;
+    box-shadow: 4px 4px 0 #4A0D0D;
+    font-family: Nunito, system-ui, sans-serif;
+}
+
+.rb-notification-system[data-toast-theme="customer"] .rb-toast__title {
+    font-family: Nunito, system-ui, sans-serif;
+    font-size: 15px;
+}
+
+.rb-notification-system[data-toast-theme="customer"] .rb-toast__message {
+    color: #4A0D0D;
+    font-family: Nunito, system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.rb-inline-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    margin: 5px 0 0;
+    color: #C62828;
+    font: 400 13px/1.4 Inter, system-ui, sans-serif;
+}
+
+.rb-inline-error svg {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    margin-top: 1px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-width: 1.5;
+}
+
+.rb-input-invalid {
+    border-color: #C62828 !important;
+}
+
+.rb-input-invalid:focus {
+    --tw-ring-color: rgba(198, 40, 40, .25) !important;
+    outline-color: #C62828 !important;
+}
+
+.rb-button-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: rb-button-spin .7s linear infinite;
+}
+
+@keyframes rb-button-spin {
+    to { transform: rotate(360deg); }
+}
+
+.rb-dialog-backdrop {
+    position: fixed;
+    z-index: 1200;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(24, 10, 10, .55);
+    padding: 20px;
+}
+
+.rb-dialog-backdrop[hidden] {
+    display: none;
+}
+
+.rb-confirm-dialog {
+    width: min(100%, 420px);
+    border: 1px solid #e8ded2;
+    border-radius: 12px;
+    background: #fffdf8;
+    padding: 23px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .24);
+    font-family: Inter, system-ui, sans-serif;
+}
+
+.rb-confirm-dialog__title {
+    margin: 0;
+    color: #4A0D0D;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.rb-confirm-dialog__message {
+    margin: 9px 0 22px;
+    color: #62564e;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.rb-confirm-dialog__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+}
+
+.rb-confirm-dialog__actions button {
+    min-height: 40px;
+    border: 1px solid #d6c9bd;
+    border-radius: 8px;
+    background: #fffdf8;
+    padding: 0 14px;
+    color: #4A0D0D;
+    font: 700 13px Inter, system-ui, sans-serif;
+    cursor: pointer;
+}
+
+.rb-confirm-dialog__actions button:focus-visible {
+    outline: 3px solid rgba(74, 13, 13, .25);
+    outline-offset: 2px;
+}
+
+.rb-confirm-dialog__actions .rb-confirm-dialog__action {
+    border-color: #4A0D0D;
+    background: #4A0D0D;
+    color: #fffdf8;
+}
+
+.rb-confirm-dialog__actions .rb-confirm-dialog__action.is-danger {
+    border-color: #C62828;
+    background: #C62828;
+}
+
+body.rb-dialog-open {
+    overflow: hidden;
+}
+
+@media (max-width: 640px) {
+    .rb-toast-stack {
+        top: auto;
+        right: auto;
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        left: 50%;
+        width: min(92vw, 430px);
+        transform: translateX(-50%);
+    }
+
+    .rb-notification-system[data-toast-theme="admin"] .rb-toast-stack {
+        top: auto;
+    }
+
+    .rb-toast {
+        transform: translateY(12px);
+    }
+
+    .rb-toast.is-visible {
+        transform: translateY(0);
+    }
+
+    .rb-notification-system[data-toast-theme="customer"] .rb-toast {
+        border-radius: 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rb-toast,
+    .rb-toast.is-visible,
+    .rb-toast.is-leaving {
+        transform: none;
+        transition: none;
+    }
+
+    .rb-button-spinner {
+        animation: none;
+    }
+
+    .rb-toast__progress {
+        transition: none !important;
+    }
+}
+
+.rb-login-feedback {
+    margin-bottom: 20px;
+    border-left: 4px solid #C62828;
+    border-radius: 8px;
+    background: #fff3f1;
+    padding: 12px 14px;
+    color: #9f1f1f;
+    font: 600 14px/1.45 Inter, system-ui, sans-serif;
+}
+
+.rb-login-feedback[hidden] {
+    display: none;
+}
+
+.rb-login-form.is-shaking {
+    animation: rb-login-shake .36s ease;
+}
+
+@keyframes rb-login-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rb-login-form.is-shaking {
+        animation: none;
+    }
+}
