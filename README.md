@@ -1,66 +1,233 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Restoe Boemi POS
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Sistem Informasi Point of Sale (POS) dan Manajemen Operasional Restoran**
 
-## About Laravel
+Restoe Boemi POS merupakan aplikasi berbasis web yang dirancang untuk membantu pengelolaan operasional restoran dalam satu sistem terintegrasi. Aplikasi ini mencakup pengelolaan menu, pemesanan melalui QR Digital Menu, transaksi kasir, pemantauan pesanan dapur, hingga laporan penjualan.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi ini juga dilengkapi AI Business Assistant yang memanfaatkan Ollama untuk membantu pemilik restoran memahami data operasional dan memperoleh rekomendasi bisnis.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Dashboard Owner** — Ringkasan aktivitas dan performa operasional restoran.
+- **Manajemen Menu** — Pengelolaan menu, kategori, harga, dan ketersediaan.
+- **QR Digital Menu** — Pelanggan dapat melihat menu dan melakukan pemesanan melalui QR Code tanpa membuat akun.
+- **Manajemen Meja** — Pengelolaan meja dan status ketersediaannya.
+- **Kasir** — Pengelolaan pesanan dan proses pembayaran.
+- **Kitchen Display** — Pemantauan pesanan yang telah dibayar oleh kasir.
+- **Manajemen Pengguna** — Pengelolaan akun internal berdasarkan hak akses.
+- **Manajemen Pelanggan** — Penyimpanan dan pengelolaan data pelanggan.
+- **Laporan** — Penyajian informasi transaksi dan penjualan.
+- **AI Business Assistant** — Asisten berbasis AI untuk membantu analisis data operasional restoran.
 
-## Learning Laravel
+## Hak Akses Pengguna
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Role | Hak Akses |
+|---|---|
+| Owner | Mengelola seluruh operasional dan pengguna internal |
+| Cashier | Mengelola pesanan dan pembayaran |
+| Kitchen | Melihat dan memperbarui status pesanan dapur |
+| Customer | Melakukan pemesanan melalui QR Digital Menu tanpa login |
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Teknologi yang Digunakan
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP 8.2+
+- Laravel 12
+- MySQL
+- Tailwind CSS
+- Alpine.js
+- Vite
+- Spatie Laravel Permission
+- Endroid QR Code
+- Ollama
+- Llama 3.2:1b
+- Git dan GitHub
 
-## Laravel Sponsors
+## Persyaratan Sistem
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Pastikan perangkat sudah memiliki:
 
-### Premium Partners
+- PHP 8.2 atau lebih baru
+- Composer
+- MySQL
+- Node.js dan NPM
+- Git
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Ollama diperlukan jika ingin menggunakan fitur AI Business Assistant.
 
-## Contributing
+## Instalasi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 1. Clone Repository
 
-## Code of Conduct
+```bash
+git clone https://github.com/anangabduhmajid/restoe-boemi-pos.git
+cd restoe-boemi-pos
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 2. Install Dependency
 
-## Security Vulnerabilities
+```bash
+composer install
+npm ci
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 3. Konfigurasi Environment
 
-## License
+Salin file `.env.example` menjadi `.env`.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Untuk Windows PowerShell:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Buka file `.env`, kemudian sesuaikan konfigurasi database MySQL:
+
+```env
+APP_NAME="Restoe Boemi POS"
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://localhost
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=restoe_boemi
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Buat database dengan nama `restoe_boemi` melalui phpMyAdmin atau MySQL sebelum melanjutkan.
+
+### 4. Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+### 5. Jalankan Migrasi Database
+
+```bash
+php artisan migrate
+```
+
+Perintah ini membuat tabel-tabel yang diperlukan aplikasi.
+
+### 6. Buat Role Pengguna
+
+Jalankan seeder khusus role:
+
+```bash
+php artisan db:seed --class=RoleSeeder
+```
+
+Seeder ini akan membuat empat role: owner, cashier, kitchen, dan customer.
+
+### 7. Buat Akun Owner Pertama
+
+Buat akun Owner melalui Laravel Tinker:
+
+```bash
+php artisan tinker
+```
+
+Di dalam Tinker, jalankan:
+
+```php
+$user = \App\Models\User::create([
+    'name' => 'Nama Owner',
+    'email' => 'owner@example.com',
+    'password' => 'GANTI_DENGAN_PASSWORD_KUAT',
+    'is_active' => true,
+]);
+
+$user->assignRole('owner');
+```
+
+Ganti nama, email, dan password contoh dengan informasi akun milik sendiri. Gunakan password unik dan kuat.
+
+Keluar dari Tinker:
+
+```php
+exit
+```
+
+**Catatan:** Jangan menggunakan `php artisan migrate --seed` untuk instalasi ini. `DatabaseSeeder` bawaan project masih membuat akun Test User dengan password default. Gunakan langkah migrasi dan pembuatan role di atas.
+
+### 8. Buat Storage Link
+
+```bash
+php artisan storage:link
+```
+
+### 9. Build Frontend
+
+```bash
+npm run build
+```
+
+### 10. Jalankan Aplikasi
+
+```bash
+php artisan serve
+```
+
+Buka aplikasi melalui:
+
+```text
+http://127.0.0.1:8000
+```
+
+Login menggunakan akun Owner yang telah dibuat sebelumnya.
+
+## Konfigurasi AI Business Assistant
+
+Fitur AI Business Assistant menggunakan Ollama secara lokal.
+
+### 1. Install Ollama
+
+Unduh dan install Ollama melalui:
+
+https://ollama.com/
+
+### 2. Unduh Model
+
+Jalankan:
+
+```bash
+ollama pull llama3.2:1b
+```
+
+### 3. Jalankan Ollama
+
+Pastikan layanan Ollama aktif dan dapat diakses melalui:
+
+```text
+http://127.0.0.1:11434
+```
+
+Konfigurasi model pada aplikasi saat ini menggunakan:
+
+- Model: `llama3.2:1b`
+- Endpoint: `http://127.0.0.1:11434`
+
+AI Business Assistant merupakan fitur tambahan. Ollama tidak diperlukan untuk menjalankan fitur POS utama.
+
+## Penggunaan QR Digital Menu
+
+Pelanggan dapat memindai QR Code pada meja untuk membuka halaman menu, memilih produk, dan mengirim pesanan tanpa harus membuat akun atau login.
+
+Untuk mengakses menu melalui perangkat lain dalam jaringan lokal, sesuaikan `PUBLIC_MENU_URL` pada `.env` dengan alamat IP komputer yang menjalankan aplikasi, termasuk port yang digunakan.
+
+## Pengembang
+
+**Anang Abduh Majid**
+
+Dikembangkan sebagai proyek pengembangan sistem informasi berbasis web dengan fokus pada digitalisasi dan integrasi operasional restoran.
+
+## Repository
+
+GitHub: https://github.com/anangabduhmajid/restoe-boemi-pos
+
+---
+
+© 2026 Anang Abduh Majid. All rights reserved.
